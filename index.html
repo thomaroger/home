@@ -12,6 +12,11 @@
   </head>
   <body style="background-color:rgb(13, 17, 23);">
     <main>
+      <div class="">
+        <span style="color:#653208"><i class="fas fa-trash fa-3x"></i></span>
+        <span class="text-warning"><i class="fas fa-trash fa-3x"></i></span>
+        <span class="text-success"><i class="fas fa-trash fa-3x"></i></span>
+      </div>
       <div class="container">
         <div class="row">
           <div class="col-md-12 themed-grid-col">
@@ -246,12 +251,53 @@
                   </div>
                 </div>
             </div>
+            <div class="card border-dark">
+              <div class="card-header">
+                  <div class="row">
+                    <div class="col-md-9 text-start"><h3><i class="fas fa-swimming-pool "></i> Piscine </h3></div>
+                    <div class="col-md-3 text-end"><p class="text-muted"> <i class="fas fa-battery-full"></i> 58%</p></div>
+                  </div>
+              </div>
+              <div class="card-body text-dark">
+                  <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item"><h3>Température : 22,2° <i class="fas fa-arrow-up"></i> <i class="fas fa-arrow-down"></i></h3></li>
+                  </ul>
+                  <div class="row">
+                  <div class="col-md-6">
+                      <span class="badge rounded-pill bg-success" style="height: 100%;width: 100%;">
+                        <table style="height: 100%;width: 100%;">
+                          <tbody>
+                            <tr>
+                              <td class="align-middle">PH <h1>7.0</h1></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </span>
+                  </div>
+                    <div class="col-md-6">
+                      <span class="badge rounded-pill bg-danger" style="height: 100%;width: 100%;">
+                        <table style="height: 100%;width: 100%;">
+                          <tbody>
+                            <tr>
+                              <td class="align-middle">Chlore<h1>148 mV</h1></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
     
           <div class="col-md-6 themed-grid-col">
              <div class="card border-dark">
               <div class="card-header"> <h3><i class="fas fa-car"></i>Trafic</h3></div>
-                <div class="card-body text-dark">
+                <div class="card-body text-dark text-center">
+                      <button type="button" class="btn btn-danger" data-form='wc-light-off'>
+                        <i class="fas fa-sign-out-alt fa-3x"></i>
+                      </button>
+                      <div class="clearfix">&nbsp;</div>
                       <ul class="list-group list-group-flush text-center">
                         <li class="list-group-item list-group-item-success"><i class="fas fa-home"></i> vers prochain evenement (titre) : x min (+ 0 min) - x,x km</li>
                         <li class="list-group-item list-group-item-success"><i class="fas fa-home"></i> vers IAD : 6 min (+ 0 min) - 3,0 km</li>
@@ -281,7 +327,137 @@
                           <button type="button" class="btn btn-danger" data-form='haut-open'>Fermeture des volets du haut</button>
                         </div>
                       </li>
-                     
+                  </ul>
+              </div>
+          </div>
+          <div class="card border-dark">
+              <div class="card-header"> <h3><i class="fas fa-lightbulb"></i> Lumière</h3></div>
+              <div class="card-body text-dark">
+                    <ul class="list-group list-group-flush text-center">
+                      <li class="list-group-item">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                          <button type="button" class="btn btn-success" data-form='bas-light-on'>Allumer les lumières du bas</button>
+                          <button type="button" class="btn btn-danger" data-form='bas-light-off'>Eteindre es lumières du bas</button>
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                          <button type="button" class="btn btn-success" data-form='haut-light-on' >Allumer les lumières du haut</button>
+                          <button type="button" class="btn btn-danger" data-form='haut-light-off'>Eteindre les lumières du haut</button>
+                        </div>
+                      </li>
+                  </ul>
+                  <ul class="list-group list-group-flush text-center">
+                      <li class="list-group-item">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="width: 100%">
+                          <button type="button" class="btn btn-light" disabled><h5><i class="fas fa-utensils"></i> Salon</h5></button>
+                          <button type="button" class="btn btn-success" data-form='salon-light-on'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button>
+                           <button type="button" class="btn btn-danger" data-form='salon-light-off'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button>
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="width: 100%">
+                          <button type="button" class="btn btn-light" disabled><h5><i class="fas fa-desktop"></i> Bureau</h5></button>
+                         <button type="button" class="btn btn-success" data-form='desk-light-on'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button>
+                           <button type="button" class="btn btn-danger" data-form='desk-light-off'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button>
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="width: 100%">
+                          <button type="button" class="btn btn-light" disabled><h5><i class="fas fa-door-closed"></i> Entrée</h5></button>
+                          <button type="button" class="btn btn-success" data-form='door-light-on'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button>
+                           <button type="button" class="btn btn-danger" data-form='door-light-off'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button>
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="width: 100%">
+                          <button type="button" class="btn btn-light" disabled><h5><i class="fas fa-book"></i> Dégagement</h5></button>
+                          <button type="button" class="btn btn-success" data-form='deg-light-on'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button>
+                           <button type="button" class="btn btn-danger" data-form='deg-light-off'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button>
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="width: 100%">
+                          <button type="button" class="btn btn-light" disabled><h5><i class="fas fa-bed"></i> Parent</h5></button>
+                          <button type="button" class="btn btn-success" data-form='chbp-light-on'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button>
+                           <button type="button" class="btn btn-danger" data-form='chbp-light-off'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button>
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="width: 100%">
+                          <button type="button" class="btn btn-light" disabled><h5><i class="fas fa-bed"></i> Hugo</h5></button>
+                          <button type="button" class="btn btn-success" data-form='chbh-light-on'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button>
+                           <button type="button" class="btn btn-danger" data-form='chbh-light-off'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button>
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="width: 100%">
+                          <button type="button" class="btn btn-light" disabled><h5><i class="fas fa-bed"></i> Emilie</h5></button>
+                           <button type="button" class="btn btn-success" data-form='chbe-light-on'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button>
+                           <button type="button" class="btn btn-danger" data-form='chbe-light-off'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button>                        
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="width: 100%">
+                          <button type="button" class="btn btn-light" disabled><h5><i class="fas fa-shower"></i> Salle de douche</h5></button>
+                           <button type="button" class="btn btn-success" data-form='sdd-light-on'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button>
+                           <button type="button" class="btn btn-danger" data-form='sdd-light-off'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button> 
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="width: 100%">
+                          <button type="button" class="btn btn-light" disabled><h5><i class="fas fa-bath"></i> Salle de Bain</h5></button>
+                          <button type="button" class="btn btn-success" data-form='sdb-light-on'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button>
+                           <button type="button" class="btn btn-danger" data-form='sdb-light-off'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button> 
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="width: 100%">
+                          <button type="button" class="btn btn-light" disabled><h5><i class="fas fa-toilet"></i> WC</h5></button>
+                          <button type="button" class="btn btn-success" data-form='wc-light-on'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button>
+                          <button type="button" class="btn btn-danger" data-form='wc-light-off'>
+                            <i class="far fa-lightbulb fa-3x"></i>
+                          </button> 
+                        </div>
+                      </li>
                   </ul>
               </div>
           </div>
@@ -289,7 +465,7 @@
            <div class="card border-dark">
               <div class="card-header"> <h3><i class="fab fa-hotjar"></i> Radiateurs</h3></div>
               <div class="card-body text-dark">
-                    <ul class="list-group list-group-flush text-center">
+                  <ul class="list-group list-group-flush text-center">
                       <li class="list-group-item">
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="width: 100%">
                           <button type="button" class="btn btn-light" disabled><i class="fas fa-home fa-3x"></i></button>
@@ -356,14 +532,6 @@
                       </li>
                       <li class="list-group-item">
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="width: 100%">
-                          <button type="button" class="btn btn-light" disabled><h5><i class="fas fa-bed"></i> Emilie (22,2°)</h5></button>
-                          <button type="button" class="btn btn-primary" data-form='chbe-hg'><i class="fas fa-snowflake fa-3x"></i></button>
-                          <button type="button" class="btn btn-success" data-form='chbe-eco' ><i class="fas fa-temperature-low fa-3x "></i></button>
-                          <button type="button" class="btn btn-warning" data-form='chbe-con'><i class="fas fa-temperature-high fa-3x"></i></button>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="width: 100%">
                           <button type="button" class="btn btn-light" disabled><h5><i class="fas fa-shower"></i> Salle de douche (22,2°)</h5></button>
                           <button type="button" class="btn btn-primary" data-form='sdd-hg'><i class="fas fa-snowflake fa-3x"></i></button>
                           <button type="button" class="btn btn-success" data-form='sdd-eco' ><i class="fas fa-temperature-low fa-3x "></i></button>
@@ -378,8 +546,6 @@
                           <button type="button" class="btn btn-warning" data-form='sdb-con'><i class="fas fa-temperature-high fa-3x"></i></button>
                         </div>
                       </li>
-
-                     
                   </ul>
               </div>
           </div>

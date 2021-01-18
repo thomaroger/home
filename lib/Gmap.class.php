@@ -1,0 +1,132 @@
+<?php
+class Gmap
+{
+    private $origin = '76 rue du grand Maury, 91280 Saint Pierre du Perray';
+    private $traffics;
+    private $gmap_url = "https://maps.googleapis.com/maps/api/distancematrix/json";
+
+    public function __construct() {
+        $traffics = array();
+        $traffics[] = array(
+            "name" => 'IAD',
+            "adress" => "Carré Haussmann III, Allée de la Ferme de Varatre, 77127 Lieusaint",
+            "distance" => 0,
+            "duration" => 0,
+            "extra_duration" => "+ 0 min",
+            "status" => "list-group-item-success",
+        );
+        $traffics[] = array(
+            "name" => 'Ecole',
+            "adress" => "Ecole Anne Frank, Avenue Colette, Saint-Pierre-du-Perray",
+            "distance" => 0,
+            "duration" => 0,
+            "extra_duration" => "+ 0 min",
+            "status" => "list-group-item-success",
+
+        );
+        $traffics[] = array(
+            "name" => 'Manue',
+            "adress" => "28 Rue Perquel, 95160 Montmorency",
+            "distance" => 0,
+            "duration" => 0,
+            "extra_duration" => "+ 0 min",
+            "status" => "list-group-item-success",
+
+        );
+        $traffics[] = array(
+            "name" => 'Voisenon',
+            "adress" => "8 impasse des lys, 77950 Voisenon",
+            "distance" => 0,
+            "duration" => 0,
+            "extra_duration" => "+ 0 min",
+            "status" => "list-group-item-success",
+
+        );
+        $traffics[] = array(
+            "name" => 'Mathieu',
+            "adress" => "2 Place Charles Peguy, 77330 Ozoir-la-Ferrière",
+            "distance" => 0,
+            "duration" => 0,
+            "extra_duration" => "+ 0 min",
+            "status" => "list-group-item-success",
+
+        );
+        $traffics[] = array(
+            "name" => 'La Darbella',
+            "adress" => "423 Route de la Darbella, 39220 Prémanon",
+            "distance" => 0,
+            "duration" => 0,
+            "extra_duration" => "+ 0 min",
+            "status" => "list-group-item-danger",
+
+        );
+        $traffics[] = array(
+            "name" => 'Saint Martin de Londres',
+            "adress" => "4 Rue des Chênes, 34380 Saint-Martin-de-Londres",
+            "distance" => 0,
+            "duration" => 0,
+            "extra_duration" => "+ 0 min",
+            "status" => "list-group-item-success",
+
+        );
+        $traffics[] = array(
+            "name" => 'Sorède',
+            "adress" => "24 Rue de Vell Roure, Sorède",
+            "distance" => 0,
+            "duration" => 0,
+            "extra_duration" => "+ 0 min",
+            "status" => "list-group-item-success",
+        );
+        $this->traffics = $traffics;
+
+        $this->gmap_url .= "?departure_time=now&origins=".urlencode($this->origin)."&key=".getenv("GMAP_KEY")."&destinations=";
+    }
+
+    public function getTraffics() {
+
+        foreach ($this->traffics as $key => $traffic) {
+            $gmap_url = $this->gmap_url.urlencode($traffic['adress']);
+            $ch = curl_init($gmap_url);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+            $result = json_decode(curl_exec($ch), true); 
+            $this->traffics[$key]["distance"]= $result['rows'][0]['elements'][0]['distance']['text'];
+            $this->traffics[$key]["duration"]= $this->translate($result['rows'][0]['elements'][0]['duration']['text']);
+
+            if(!empty($result['rows'][0]['elements'][0]['duration_in_traffic'])) {
+              $diff = round(($result['rows'][0]['elements'][0]['duration_in_traffic']['value']-$result['rows'][0]['elements'][0]['duration']['value']) / 60);  
+              if ($diff > 0) {
+                $this->traffics[$key]["status"] = "list-group-item-danger";
+                $this->traffics[$key]["extra_duration"] = "+ ".$diff ." min";
+                $this->traffics[$key]["duration"]= $this->translate($result['rows'][0]['elements'][0]['duration_in_traffic']['text']);
+              }
+            }
+        }
+
+        return $this->traffics;
+    }
+
+    public function translate($string) 
+    {
+        return str_replace(array("hours","hour","mins"), array('h','h', 'min'), $string);
+    }
+
+
+    public function render()
+    {
+        $traffics = $this->getTraffics();
+        if(empty($traffics)) {
+            return '';
+        }
+        $html = '';
+        $html = '<div class="card border-dark"><div class="card-header"> <h3><i class="fas fa-car"></i>Trafic</h3></div><div class="card-body text-dark text-center"><ul class="list-group list-group-flush text-center">'.
+        //$html .= '<li class="list-group-item list-group-item-success"><i class="fas fa-home"></i> vers prochain evenement (titre) : x min (+ 0 min) - x,x km</li>';
+
+        foreach ($traffics as $traffic) {
+            $html .='<li class="list-group-item '.$traffic['status'].'"><i class="fas fa-home"></i> vers '.$traffic['name'].' : '. $traffic['duration'].'('.$traffic['extra_duration'].') - '.$traffic['distance'].'</li>';
+        }
+        $html .= '</ul></div></div>'; 
+
+        return $html;
+    }
+}
