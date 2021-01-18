@@ -30,7 +30,7 @@ if ($requestUri == "/trash") {
 }
 
 if ($requestUri == "/weather") {    
-    require_once("vigimeteo/VigilanceMeteo.class.php");
+    require_once("VigilanceMeteo.class.php");
     $vigimeteo = new VigilanceMeteo();
     header('Content-Type: text/html; charset=utf-8');
     echo $vigimeteo->render();
