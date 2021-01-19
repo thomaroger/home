@@ -107,7 +107,7 @@ class Gmap
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
             $result = json_decode(curl_exec($ch), true); 
             if(empty($result['rows'][0])) {
-                //var_dump($result);
+                var_dump($result);
                 continue;
             }
 
