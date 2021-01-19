@@ -20,7 +20,7 @@ $( window ).on( "load", function() {
     $.get( "/radiator", function( data ) {
       $( "#radiator" ).html( data );
     });
-     $.get( "/gmap", function( data ) {
+    $.get( "/gmap", function( data ) {
       $( "#gmap" ).html( data );
     });
 });

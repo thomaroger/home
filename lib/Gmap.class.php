@@ -1,12 +1,28 @@
 <?php
+
 class Gmap
 {
     private $origin = '76 rue du grand Maury, 91280 Saint Pierre du Perray';
     private $traffics;
     private $gmap_url = "https://maps.googleapis.com/maps/api/distancematrix/json";
+    private $gcal_url = "https://www.googleapis.com/calendar/v3/calendars/thomaroger%40gmail.com/events?orderBy=startTime&singleEvents=true";
 
     public function __construct() {
         $traffics = array();
+
+        $nextEvent = $this->getNextEvent();
+        if(!empty($nextEvent)) {
+             $traffics[] = array(
+                "name" => $nextEvent['name'],
+                "adress" => $nextEvent['adress'],
+                "distance" => 0,
+                "duration" => 0,
+                "extra_duration" => "+ 0 min",
+                "status" => "list-group-item-success",
+            );
+        }
+
+
         $traffics[] = array(
             "name" => 'IAD',
             "adress" => "Carré Haussmann III, Allée de la Ferme de Varatre, 77127 Lieusaint",
@@ -90,6 +106,11 @@ class Gmap
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
             $result = json_decode(curl_exec($ch), true); 
+            if(empty($result['rows'][0])) {
+                var_dump($result);
+                continue;
+            }
+
             $this->traffics[$key]["distance"]= $result['rows'][0]['elements'][0]['distance']['text'];
             $this->traffics[$key]["duration"]= $this->translate($result['rows'][0]['elements'][0]['duration']['text']);
 
@@ -104,6 +125,23 @@ class Gmap
         }
 
         return $this->traffics;
+    }
+
+    public function getNextEvent() 
+    {
+        $gcalUrl = $this->gcal_url.'&key='.getenv('GMAP_KEY').'&timeMin='.urlencode(date('c'));
+        $data = array();
+        $ch = curl_init($gcalUrl);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+        $result = json_decode(curl_exec($ch), true); 
+        if(empty($result['items'][0]['location'])) {
+            return $data;
+        }
+
+        $data = array('name'=>$result['items'][0]['summary'], 'adress'=>$result['items'][0]['location']);
+        
+        return $data;
     }
 
     public function translate($string) 

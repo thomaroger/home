@@ -22,11 +22,11 @@
       <div id="weather"></div>
       <div class="row"> 
         <div class="col-md-6 themed-grid-col">  
-          <div id="flipr"></div>
-<!--          <div id="netatmo"></div>-->
+          <div id="netatmo"></div>
         </div>
         <div class="col-md-6 themed-grid-col">
           <div id='gmap'></div>
+          <div id="flipr"></div>
 <!--          <div id="volet"></div>
           <div id="light"></div>
           <div id="radiator"></div>-->
