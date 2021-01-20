@@ -21,7 +21,7 @@ if(getenv('ENV') != "dev") {
 
 
 $requestUri = $_SERVER['REQUEST_URI'];
-/*
+
 if ($requestUri == "/trash") {    
     require_once('Trash.class.php');
     $trash = new Trash();
@@ -78,7 +78,7 @@ if ($requestUri == "/radiator") {
     header('Content-Type: text/html; charset=utf-8');
     echo $radiator->render();
     exit;
-}*/
+}
 
 
 if ($requestUri == "/gmap") {    
