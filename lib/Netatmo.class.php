@@ -144,8 +144,7 @@ class Netatmo
             <div class="card border-dark">
               <div class="card-header">
                 <div class="row">
-                    <div class="col-md-9 text-start"><h3><i class="fas fa-utensils"></i> Salon </h3></div>
-                    <div class="col-md-3 text-end"><p class="text-muted"> <i class="fas fa-battery-full"></i> '.$return['salon']['battery_percent'].'%</p></div>
+                    <div class="col-md-12 text-start"><h3><i class="fas fa-utensils"></i> Salon </h3></div>
                   </div>
                 </div>
               <div class="card-body text-dark">
