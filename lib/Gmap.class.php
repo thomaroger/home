@@ -101,6 +101,9 @@ class Gmap
     public function getTraffics() {
 
         foreach ($this->traffics as $key => $traffic) {
+            if (empty($traffic['adress'])) {
+                continue;
+            }
             $gmap_url = $this->gmap_url.urlencode($traffic['adress']);
             $ch = curl_init($gmap_url);
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
