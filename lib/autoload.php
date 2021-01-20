@@ -37,7 +37,9 @@ if ($requestUri == "/weather") {
     exit;
 }
 
-if ($requestUri == "/netatmo") {    
+if ($requestUri == "/netatmo") {   
+    require_once ('netatmo-api-php/src/Netatmo/autoload.php');
+
     require_once('Netatmo.class.php');
     $netatmo = new Netatmo();
     header('Content-Type: text/html; charset=utf-8');
