@@ -178,7 +178,7 @@ class Netatmo
                 </div>
             </div>
 
-            <div class="card border-dark">
+            <!--<div class="card border-dark">
               <div class="card-header">
                 <div class="row">
                     <div class="col-md-9 text-start"><h3><i class="fas fa-bed"></i> Chambre </h3></div>
@@ -212,7 +212,7 @@ class Netatmo
                   <div class="col-md-6 text-end"><i class="fas fa-temperature-high"></i> '.$return['chambre']['max_temp'].'° ('.$return['chambre']['date_max_temp'].')</div>
                   </div>
                 </div>
-            </div>';
+            </div>-->';
 
     }
 }
