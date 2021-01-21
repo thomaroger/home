@@ -4,6 +4,7 @@ if(file_exists(stream_resolve_include_path('env.php'))){
     require_once('env.php');
 }
 
+
 if(getenv('ENV') != "dev") {
     if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
         $ip = $_SERVER['HTTP_CLIENT_IP'];
@@ -13,7 +14,7 @@ if(getenv('ENV') != "dev") {
         $ip = $_SERVER['REMOTE_ADDR'];
     }
 
-    if ($ip != "176.135.36.146") {
+    if (!in_arrar($ip, array("176.135.36.146","91.166.187.35"))) {
         header('HTTP/1.0 403 Forbidden');
         exit;
     }
@@ -77,6 +78,15 @@ if ($requestUri == "/radiator") {
     $radiator = new Radiator();
     header('Content-Type: text/html; charset=utf-8');
     echo $radiator->render();
+    exit;
+}
+
+
+if ($requestUri == "/weather-days") {    
+    require_once('Weather.class.php');
+    $weather = new Weather();
+    header('Content-Type: text/html; charset=utf-8');
+    echo  $weather->render();
     exit;
 }
 

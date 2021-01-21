@@ -3,6 +3,9 @@ $( window ).on( "load", function() {
       $( "#trash" ).html( data );
     });
     $.get( "/weather", function( data ) {
+      $( "#weather-alert" ).html( data );
+    });
+    $.get( "/weather-days", function( data ) {
       $( "#weather" ).html( data );
     });
     $.get( "/flipr", function( data ) {

@@ -6,11 +6,23 @@ class Gmap
     private $traffics;
     private $gmap_url = "https://maps.googleapis.com/maps/api/distancematrix/json";
     private $gcal_url = "https://www.googleapis.com/calendar/v3/calendars/thomaroger%40gmail.com/events?orderBy=startTime&singleEvents=true";
-
+    private $gcal_url_aurelie = "https://www.googleapis.com/calendar/v3/calendars/laporte.aurelie91%40gmail.com/events?orderBy=startTime&singleEvents=true";
     public function __construct() {
         $traffics = array();
 
-        $nextEvent = $this->getNextEvent();
+        $nextEvent = $this->getNextEvent($this->gcal_url);
+        if(!empty($nextEvent)) {
+             $traffics[] = array(
+                "name" => $nextEvent['name'],
+                "adress" => $nextEvent['adress'],
+                "distance" => 0,
+                "duration" => 0,
+                "extra_duration" => "+ 0 min",
+                "status" => "list-group-item-success",
+            );
+        }
+
+        $nextEvent = $this->getNextEvent($this->gcal_url_aurelie);
         if(!empty($nextEvent)) {
              $traffics[] = array(
                 "name" => $nextEvent['name'],
@@ -101,16 +113,22 @@ class Gmap
     public function getTraffics() {
 
         foreach ($this->traffics as $key => $traffic) {
+
             if (empty($traffic['adress'])) {
                 continue;
             }
+
             $gmap_url = $this->gmap_url.urlencode($traffic['adress']);
             $ch = curl_init($gmap_url);
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
             $result = json_decode(curl_exec($ch), true); 
             if(empty($result['rows'][0])) {
-                var_dump($result);
+                continue;
+            }
+
+            if ($result['rows'][0]['elements'][0]['status'] == 'ZERO_RESULTS') {
+                unset($this->traffics[$key]);
                 continue;
             }
 
@@ -130,9 +148,9 @@ class Gmap
         return $this->traffics;
     }
 
-    public function getNextEvent() 
+    public function getNextEvent($gcal_url) 
     {
-        $gcalUrl = $this->gcal_url.'&key='.getenv('GMAP_KEY').'&timeMin='.urlencode(date('c'));
+        $gcalUrl = $gcal_url.'&key='.getenv('GMAP_KEY').'&timeMin='.urlencode(date('c'));
         $data = array();
         $ch = curl_init($gcalUrl);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
