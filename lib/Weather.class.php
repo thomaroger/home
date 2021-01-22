@@ -47,6 +47,9 @@ class Weather {
             if(!empty($weatherByDay['rain'])) {
                 $weather[$k]['rain_mn']= str_replace('.',',',round($weatherByDay['rain'],0));
             }
+            if(!empty($weatherByDay['snow'])) {
+                $weather[$k]['rain_mn']= str_replace('.',',',round($weatherByDay['snow'],0));
+            }
             $weather[$k]['wind']= str_replace('.',',',round($weatherByDay['wind_speed']*3.6));
 
         }
