@@ -44,11 +44,11 @@ class Weather {
             $weather[$k]['description']= ucfirst($weatherByDay['weather'][0]['description']);
             $weather[$k]['temp_min']= str_replace('.',',',round($weatherByDay['temp']['min'],1));
             $weather[$k]['temp_max']= str_replace('.',',',round($weatherByDay['temp']['max'],1));
-            if(!empty($weatherByDay['rain'])) {
-                $weather[$k]['rain_mn']= str_replace('.',',',round($weatherByDay['rain'],0));
-            }
             if(!empty($weatherByDay['snow'])) {
-                $weather[$k]['rain_mn']= str_replace('.',',',round($weatherByDay['snow'],0));
+                $weather[$k]['rain_mn'] += str_replace('.',',',round($weatherByDay['snow'],0));
+            }
+            if(!empty($weatherByDay['rain'])) {
+                $weather[$k]['rain_mn'] += str_replace('.',',',round($weatherByDay['rain'],0));
             }
             $weather[$k]['wind']= str_replace('.',',',round($weatherByDay['wind_speed']*3.6));
 
