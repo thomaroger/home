@@ -55,9 +55,9 @@ class Netatmo
 
             $return['salon']['battery_percent'] =  '100';
 
+
             foreach ($device['modules'] as $module) {
                 if ($module['type'] == 'NAModule4') {
-                  //Module ADD
                     $return['chambre']['temperature'] = str_replace('.',',',$module['dashboard_data']['Temperature']);
                     $return['chambre']['tmp_trend'] = 'arrow-'.$module['dashboard_data']['temp_trend'];
                     $return['chambre']['CO2'] = $module['dashboard_data']['CO2'];
@@ -74,6 +74,7 @@ class Netatmo
                     $date->setTimestamp($module['dashboard_data']['date_max_temp']);
                     $return['chambre']['date_max_temp'] = $date->format('d/m/Y H:i');
                 }
+                
                 if ($module['type'] == 'NAModule1') {
                   // EXT
                     $return['ext']['temperature'] = str_replace('.',',',$module['dashboard_data']['Temperature']);
@@ -96,7 +97,6 @@ class Netatmo
           }
         }
 
-        $return['chambre'] = $return['salon'];
         return $return;
     }
 
@@ -177,7 +177,7 @@ class Netatmo
                 </div>
             </div>
 
-            <!--<div class="card border-dark">
+            <div class="card border-dark">
               <div class="card-header">
                 <div class="row">
                     <div class="col-md-9 text-start"><h3><i class="fas fa-bed"></i> Chambre </h3></div>
@@ -211,7 +211,7 @@ class Netatmo
                   <div class="col-md-6 text-end"><i class="fas fa-temperature-high"></i> '.$return['chambre']['max_temp'].'° ('.$return['chambre']['date_max_temp'].')</div>
                   </div>
                 </div>
-            </div>-->';
+            </div>';
 
     }
 }
