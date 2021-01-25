@@ -178,7 +178,7 @@ class Gmap
             return '';
         }
         $html = '';
-        $html = '<div class="card border-dark"><div class="card-header"> <h3><i class="fas fa-car"></i>Trafic</h3></div><div class="card-body text-dark text-center"><ul class="list-group list-group-flush text-center">';
+        $html = '<div class="card"><div class="card-header"> <h3><i class="fas fa-car"></i>Trafic</h3></div><div class="card-body text-dark text-center"><ul class="list-group list-group-flush text-center">';
         //$html .= '<li class="list-group-item list-group-item-success"><i class="fas fa-home"></i> vers prochain evenement (titre) : x min (+ 0 min) - x,x km</li>';
 
         foreach ($traffics as $traffic) {

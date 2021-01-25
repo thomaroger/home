@@ -3,7 +3,7 @@
 class Flipr {
     private $oauth = "https://apis.goflipr.com/OAuth2/token";
     private $flipr = "https://apis.goflipr.com/modules/30C8C7/survey/last";
-    private $flipr_historical = "https://apis.goflipr.com/modules/30C8C7/survey/LastHours/48";
+    private $flipr_historical = "https://apis.goflipr.com/modules/30C8C7/survey/LastHours/72";
     private $access_token = null;
 
     public function __construct($username, $password)
@@ -56,7 +56,6 @@ class Flipr {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer '.$this->access_token,'cache-control : no-cache'));
         $result = json_decode(curl_exec($ch),true);
-
         $return["trend"] = 'down';
         if ($return['temp'] > $result[1]['Temperature']) {
             $return["trend"] = 'up';
@@ -72,7 +71,7 @@ class Flipr {
             return $html;
         }
 
-        $html = '<div class="card border-dark"><div class="card-header"><div class="row"><div class="col-md-9 text-start"><h3><i class="fas fa-swimming-pool "></i> Piscine </h3></div><div class="col-md-3 text-end"><p class="text-muted"> <i class="fas fa-battery-full"></i> '.($pool['batt']*100).'%</p></div></div></div><div class="card-body text-dark"><ul class="list-group list-group-flush text-center"><li class="list-group-item"><h3>Température : '.$pool['temp'].'° <i class="fas fa-arrow-'.$pool['trend'].'"></i></h3></li></ul><div class="row"><div class="col-md-6"><span class="badge rounded-pill '.$pool['ph']['status'].'" style="height: 100%;width: 100%;"><table style="height: 100%;width: 100%;"><tbody><tr> <td class="align-middle">PH <h1>'.$pool['ph']['value'].'</h1></td></tr></tbody></table></span></div><div class="col-md-6"><span class="badge rounded-pill '.$pool['chlore']['status'].'" style="height: 100%;width: 100%;"><table style="height: 100%;width: 100%;"><tbody><tr><td class="align-middle">Chlore<h1>'.$pool['chlore']['value'].'  mV</h1></td></tr></tbody></table></span></div></div></div><div class="card-footer text-muted"><div class="row"><div class="col-md-9 text-start"><i class="fas fa-clock"></i> Dernière mesure le '.$pool['date'].'</div><div class="col-md-3 text-end"><i class="fas fa-sun"></i> UV : '.$pool['uv'].'</div></div></div></div></div></div>';
+        $html = '<div class="card"><div class="card-header"><div class="row"><div class="col-md-9 text-start"><h3><i class="fas fa-swimming-pool "></i> Piscine </h3></div><div class="col-md-3 text-end"><p class="text-muted"> <i class="fas fa-battery-full"></i> '.($pool['batt']*100).'%</p></div></div></div><div class="card-body text-dark"><ul class="list-group list-group-flush text-center"><li class="list-group-item"><h3>Température : '.$pool['temp'].'° <i class="fas fa-arrow-'.$pool['trend'].'"></i></h3></li></ul><div class="row"><div class="col-md-6"><span class="badge rounded-pill '.$pool['ph']['status'].'" style="height: 100%;width: 100%;"><table style="height: 100%;width: 100%;"><tbody><tr> <td class="align-middle">PH <h1>'.$pool['ph']['value'].'</h1></td></tr></tbody></table></span></div><div class="col-md-6"><span class="badge rounded-pill '.$pool['chlore']['status'].'" style="height: 100%;width: 100%;"><table style="height: 100%;width: 100%;"><tbody><tr><td class="align-middle">Chlore<h1>'.$pool['chlore']['value'].'  mV</h1></td></tr></tbody></table></span></div></div></div><div class="card-footer text-muted"><div class="row"><div class="col-md-9 text-start"><i class="fas fa-clock"></i> Dernière mesure le '.$pool['date'].'</div><div class="col-md-3 text-end"><i class="fas fa-sun"></i> UV : '.$pool['uv'].'</div></div></div></div></div></div>';
 
         return $html;
     }

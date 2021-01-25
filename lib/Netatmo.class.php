@@ -57,7 +57,9 @@ class Netatmo
 
 
             foreach ($device['modules'] as $module) {
-                if ($module['type'] == 'NAModule4') {
+
+                if ($module['module_name'] == 'Chambre') {
+
                     $return['chambre']['temperature'] = str_replace('.',',',$module['dashboard_data']['Temperature']);
                     $return['chambre']['tmp_trend'] = 'arrow-'.$module['dashboard_data']['temp_trend'];
                     $return['chambre']['CO2'] = $module['dashboard_data']['CO2'];
@@ -74,8 +76,9 @@ class Netatmo
                     $date->setTimestamp($module['dashboard_data']['date_max_temp']);
                     $return['chambre']['date_max_temp'] = $date->format('d/m/Y H:i');
                 }
-                
-                if ($module['type'] == 'NAModule1') {
+
+
+                if ($module['module_name'] == 'Jardin') {
                   // EXT
                     $return['ext']['temperature'] = str_replace('.',',',$module['dashboard_data']['Temperature']);
                     $return['ext']['tmp_trend'] = 'arrow-'.$module['dashboard_data']['temp_trend'];
@@ -119,14 +122,14 @@ class Netatmo
 
 
         return '
-           <div class="card border-dark">
+           <div class="col-md-12 themed-grid-col"><div class="card">
               <div class="card-header">
                   <div class="row">
                     <div class="col-md-9 text-start"><h3><i class="fas fa-umbrella-beach "></i> Extérieur </h3></div>
                     <div class="col-md-3 text-end"><p class="text-muted"> <i class="fas fa-battery-full"></i> '.$return['ext']['battery_percent'].'%</p></div>
                   </div>
               </div>
-              <div class="card-body text-dark">
+              <div class="card-body">
                   <ul class="list-group list-group-flush text-center">
                     <li class="list-group-item"><h3>Température : '.$return['ext']['temperature'].'° <i class="fas fa-'.$return['ext']['tmp_trend'].'"></i></h3></li>
                     <li class="list-group-item">Humidité : '.$return['ext']['Humidity'].'%</li>
@@ -139,9 +142,9 @@ class Netatmo
                   <div class="col-md-6 text-end"><i class="fas fa-temperature-high"></i> '.$return['ext']['max_temp'].'° ('.$return['ext']['date_max_temp'].')</div>
                   </div>
                 </div>
-            </div>
+            </div></div>
 
-            <div class="card border-dark">
+            <div class="card">
               <div class="card-header">
                 <div class="row">
                     <div class="col-md-12 text-start"><h3><i class="fas fa-utensils"></i> Salon </h3></div>
@@ -177,7 +180,7 @@ class Netatmo
                 </div>
             </div>
 
-            <div class="card border-dark">
+            <div class="card">
               <div class="card-header">
                 <div class="row">
                     <div class="col-md-9 text-start"><h3><i class="fas fa-bed"></i> Chambre </h3></div>
