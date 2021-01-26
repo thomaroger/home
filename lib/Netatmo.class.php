@@ -64,9 +64,11 @@ class Netatmo
 
                     $return['chambre']['temperature'] = str_replace('.',',',$module['dashboard_data']['Temperature']);
                     $return['chambre']['tmp_trend'] = 'arrow-'.$module['dashboard_data']['temp_trend'];
-                    if ($device['dashboard_data']['temp_trend'] == 'stable') {
+
+                    if ($module['dashboard_data']['temp_trend'] == 'stable') {
                         $return['chambre']['tmp_trend'] = 'equals';
                     }
+
                     $return['chambre']['CO2'] = $module['dashboard_data']['CO2'];
                     $return['chambre']['typeco'] = $this->getStatusCO($module['dashboard_data']['CO2']);
                     $return['chambre']['Humidity'] = $module['dashboard_data']['Humidity'];
@@ -86,7 +88,7 @@ class Netatmo
 
                     $return['bureau']['temperature'] = str_replace('.',',',$module['dashboard_data']['Temperature']);
                     $return['bureau']['tmp_trend'] = 'arrow-'.$module['dashboard_data']['temp_trend'];
-                    if ($device['dashboard_data']['temp_trend'] == 'stable') {
+                    if ($module['dashboard_data']['temp_trend'] == 'stable') {
                         $return['bureau']['tmp_trend'] = 'equals';
                     }
                     $return['bureau']['CO2'] = $module['dashboard_data']['CO2'];
@@ -108,7 +110,7 @@ class Netatmo
 
                     $return['degagement']['temperature'] = str_replace('.',',',$module['dashboard_data']['Temperature']);
                     $return['degagement']['tmp_trend'] = 'arrow-'.$module['dashboard_data']['temp_trend'];
-                     if ($device['dashboard_data']['temp_trend'] == 'stable') {
+                     if ($module['dashboard_data']['temp_trend'] == 'stable') {
                         $return['degagement']['tmp_trend'] = 'equals';
                     }
                     $return['degagement']['CO2'] = $module['dashboard_data']['CO2'];
