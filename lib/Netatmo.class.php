@@ -28,6 +28,8 @@ class Netatmo
         $return['ext'] = array();
         $return['salon'] = array();
         $return['chambre'] = array();
+        $return['degagement'] = array();
+        $return['bureau'] = array();
 
         foreach ($data['devices'] as $device) {
           if($device['type'] == 'NAMain') {
@@ -62,6 +64,9 @@ class Netatmo
 
                     $return['chambre']['temperature'] = str_replace('.',',',$module['dashboard_data']['Temperature']);
                     $return['chambre']['tmp_trend'] = 'arrow-'.$module['dashboard_data']['temp_trend'];
+                    if ($device['dashboard_data']['temp_trend'] == 'stable') {
+                        $return['chambre']['tmp_trend'] = 'equals';
+                    }
                     $return['chambre']['CO2'] = $module['dashboard_data']['CO2'];
                     $return['chambre']['typeco'] = $this->getStatusCO($module['dashboard_data']['CO2']);
                     $return['chambre']['Humidity'] = $module['dashboard_data']['Humidity'];
@@ -75,6 +80,50 @@ class Netatmo
                     $date = new DateTime();
                     $date->setTimestamp($module['dashboard_data']['date_max_temp']);
                     $return['chambre']['date_max_temp'] = $date->format('d/m/Y H:i');
+                }
+
+                if ($module['module_name'] == 'Bureau') {
+
+                    $return['bureau']['temperature'] = str_replace('.',',',$module['dashboard_data']['Temperature']);
+                    $return['bureau']['tmp_trend'] = 'arrow-'.$module['dashboard_data']['temp_trend'];
+                    if ($device['dashboard_data']['temp_trend'] == 'stable') {
+                        $return['bureau']['tmp_trend'] = 'equals';
+                    }
+                    $return['bureau']['CO2'] = $module['dashboard_data']['CO2'];
+                    $return['bureau']['typeco'] = $this->getStatusCO($module['dashboard_data']['CO2']);
+                    $return['bureau']['Humidity'] = $module['dashboard_data']['Humidity'];
+                    $return['bureau']['min_temp'] = str_replace('.',',',$module['dashboard_data']['min_temp']);
+                    $return['bureau']['max_temp'] = str_replace('.',',',$module['dashboard_data']['max_temp']);
+                    $return['bureau']['battery_percent'] =  $module['battery_percent'];
+
+                    $date = new DateTime();
+                    $date->setTimestamp($module['dashboard_data']['date_min_temp']);
+                    $return['bureau']['date_min_temp'] = $date->format('d/m/Y H:i');
+                    $date = new DateTime();
+                    $date->setTimestamp($module['dashboard_data']['date_max_temp']);
+                    $return['bureau']['date_max_temp'] = $date->format('d/m/Y H:i');
+                }
+
+                if ($module['module_name'] == 'Degagement') {
+
+                    $return['degagement']['temperature'] = str_replace('.',',',$module['dashboard_data']['Temperature']);
+                    $return['degagement']['tmp_trend'] = 'arrow-'.$module['dashboard_data']['temp_trend'];
+                     if ($device['dashboard_data']['temp_trend'] == 'stable') {
+                        $return['degagement']['tmp_trend'] = 'equals';
+                    }
+                    $return['degagement']['CO2'] = $module['dashboard_data']['CO2'];
+                    $return['degagement']['typeco'] = $this->getStatusCO($module['dashboard_data']['CO2']);
+                    $return['degagement']['Humidity'] = $module['dashboard_data']['Humidity'];
+                    $return['degagement']['min_temp'] = str_replace('.',',',$module['dashboard_data']['min_temp']);
+                    $return['degagement']['max_temp'] = str_replace('.',',',$module['dashboard_data']['max_temp']);
+                    $return['degagement']['battery_percent'] =  $module['battery_percent'];
+
+                    $date = new DateTime();
+                    $date->setTimestamp($module['dashboard_data']['date_min_temp']);
+                    $return['degagement']['date_min_temp'] = $date->format('d/m/Y H:i');
+                    $date = new DateTime();
+                    $date->setTimestamp($module['dashboard_data']['date_max_temp']);
+                    $return['degagement']['date_max_temp'] = $date->format('d/m/Y H:i');
                 }
 
 
@@ -99,6 +148,9 @@ class Netatmo
             }
           }
         }
+
+       $return['bureau'] = $return['chambre'];
+       $return['degagement'] = $return['chambre'];
 
         return $return;
     }
@@ -214,7 +266,78 @@ class Netatmo
                   <div class="col-md-6 text-end"><i class="fas fa-temperature-high"></i> '.$return['chambre']['max_temp'].'° ('.$return['chambre']['date_max_temp'].')</div>
                   </div>
                 </div>
-            </div>';
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <div class="row">
+                    <div class="col-md-9 text-start"><h3><i class="fas fa-desktop"></i> Bureau </h3></div>
+                    <div class="col-md-3 text-end"><p class="text-muted"> <i class="fas fa-battery-full"></i> '.$return['bureau']['battery_percent'].'%</p></div>
+                  </div>
+                </div>
+              <div class="card-body text-dark">
+                <div class="row">
+                  <div class="col-md-3">
+                      <span class="badge rounded-pill '.$return['bureau']['typeco'].'" style="height: 100%;width: 100%;">
+                        <table style="height: 100%;width: 100%;">
+                          <tbody>
+                            <tr>
+                              <td class="align-middle"><h1>'.$return['bureau']['CO2'].'</h1>ppm</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </span>
+                  </div>
+                  <div class="col-md-9">
+                    <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item"><h3><i class="fas fa-thermometer-quarter"></i> '.$return['bureau']['temperature'].'° <i class="fas fa-'.$return['bureau']['tmp_trend'].'"></i></h3></li>
+                    <li class="list-group-item">Humidité : '.$return['bureau']['Humidity'].'%</li>
+                  </ul>
+                  </div>
+                </div>
+                </div>
+                <div class="card-footer text-muted">
+                  <div class="row">
+                  <div class="col-md-6 text-start"><i class="fas fa-temperature-low"></i> '.$return['bureau']['min_temp'].'° ('.$return['bureau']['date_min_temp'].')</div>
+                  <div class="col-md-6 text-end"><i class="fas fa-temperature-high"></i> '.$return['bureau']['max_temp'].'° ('.$return['bureau']['date_max_temp'].')</div>
+                  </div>
+                </div>
+            </div>
+             <div class="card">
+              <div class="card-header">
+                <div class="row">
+                    <div class="col-md-9 text-start"><h3><i class="fas fa-book"></i> Degagement </h3></div>
+                    <div class="col-md-3 text-end"><p class="text-muted"> <i class="fas fa-battery-full"></i> '.$return['degagement']['battery_percent'].'%</p></div>
+                  </div>
+                </div>
+              <div class="card-body text-dark">
+                <div class="row">
+                  <div class="col-md-3">
+                      <span class="badge rounded-pill '.$return['degagement']['typeco'].'" style="height: 100%;width: 100%;">
+                        <table style="height: 100%;width: 100%;">
+                          <tbody>
+                            <tr>
+                              <td class="align-middle"><h1>'.$return['degagement']['CO2'].'</h1>ppm</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </span>
+                  </div>
+                  <div class="col-md-9">
+                    <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item"><h3><i class="fas fa-thermometer-quarter"></i> '.$return['degagement']['temperature'].'° <i class="fas fa-'.$return['degagement']['tmp_trend'].'"></i></h3></li>
+                    <li class="list-group-item">Humidité : '.$return['degagement']['Humidity'].'%</li>
+                  </ul>
+                  </div>
+                </div>
+                </div>
+                <div class="card-footer text-muted">
+                  <div class="row">
+                  <div class="col-md-6 text-start"><i class="fas fa-temperature-low"></i> '.$return['degagement']['min_temp'].'° ('.$return['degagement']['date_min_temp'].')</div>
+                  <div class="col-md-6 text-end"><i class="fas fa-temperature-high"></i> '.$return['degagement']['max_temp'].'° ('.$return['degagement']['date_max_temp'].')</div>
+                  </div>
+                </div>
+            </div>
+            ';
 
     }
 }
