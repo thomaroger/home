@@ -151,8 +151,6 @@ class Netatmo
           }
         }
 
-       $return['degagement'] = $return['chambre'];
-
         return $return;
     }
 
