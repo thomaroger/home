@@ -151,7 +151,6 @@ class Netatmo
           }
         }
 
-       $return['bureau'] = $return['chambre'];
        $return['degagement'] = $return['chambre'];
 
         return $return;
