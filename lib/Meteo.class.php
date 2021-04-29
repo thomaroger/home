@@ -92,7 +92,7 @@ class Meteo
 	
 	private function AddData($data)
 	{
-		if($this->DEP != 'dep_91' && $this->DEP != 'dep_77')  {
+		if($this->DEP != 'dep_74' && $this->DEP != 'dep_01')  {
 			return;
 		}
 		$NiveauMax = $this->NiveauMax($data);

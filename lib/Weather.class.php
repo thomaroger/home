@@ -2,7 +2,7 @@
 
 class Weather {
     private $data;
-    private $url = "https://api.openweathermap.org/data/2.5/onecall?lat=48.6131&lon=2.49586&exclude=current,minutely,hourly,alerts&units=metric&lang=fr&cnt=16&appid=";
+    private $url = "https://api.openweathermap.org/data/2.5/onecall?lat=46.200001&lon=6.43333&exclude=current,minutely,hourly,alerts&units=metric&lang=fr&cnt=16&appid=";
 
     public function __construct() {
 

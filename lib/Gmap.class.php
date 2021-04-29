@@ -2,7 +2,7 @@
 
 class Gmap
 {
-    private $origin = '76 rue du grand Maury, 91280 Saint Pierre du Perray';
+    private $origin = "224 route de l'église, 74250 Bogève";
     private $traffics;
     private $gmap_url = "https://maps.googleapis.com/maps/api/distancematrix/json";
     private $gcal_url = "https://www.googleapis.com/calendar/v3/calendars/thomaroger%40gmail.com/events?orderBy=startTime&singleEvents=true";

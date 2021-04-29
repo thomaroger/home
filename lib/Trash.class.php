@@ -2,10 +2,7 @@
 
 class Trash {
 
-    public static $days  = array(0=>'class="text-success"',
-                                 1=>'class="text-warning"',
-                                 2=>'style="color:#653208"',
-                                 5=>'style="color:#653208"');
+    public static $days  = array(4=>'style="color:#653208"');
 
     public function getTrash(){
         $return = "";
