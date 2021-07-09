@@ -32,6 +32,7 @@ class Netatmo
         $return['bureau'] = array();
 
         foreach ($data['devices'] as $device) {
+
           if($device['type'] == 'NAMain') {
             // main
             $return['ext']['Pressure'] = str_replace('.',',',$device['dashboard_data']['Pressure']);
@@ -60,6 +61,7 @@ class Netatmo
 
             foreach ($device['modules'] as $module) {
 
+
                 if ($module['module_name'] == 'Chambre') {
 
                     $return['chambre']['temperature'] = str_replace('.',',',$module['dashboard_data']['Temperature']);
@@ -84,7 +86,7 @@ class Netatmo
                     $return['chambre']['date_max_temp'] = $date->format('d/m/Y H:i');
                 }
 
-                if ($module['module_name'] == 'Bureau') {
+                if ($module['module_name'] == 'Chambre Hugo') {
 
                     $return['bureau']['temperature'] = str_replace('.',',',$module['dashboard_data']['Temperature']);
                     $return['bureau']['tmp_trend'] = 'arrow-'.$module['dashboard_data']['temp_trend'];
@@ -106,7 +108,7 @@ class Netatmo
                     $return['bureau']['date_max_temp'] = $date->format('d/m/Y H:i');
                 }
 
-                if ($module['module_name'] == 'Degagement') {
+                if ($module['module_name'] == 'Chambre Émilie') {
 
                     $return['degagement']['temperature'] = str_replace('.',',',$module['dashboard_data']['Temperature']);
                     $return['degagement']['tmp_trend'] = 'arrow-'.$module['dashboard_data']['temp_trend'];
@@ -269,7 +271,7 @@ class Netatmo
             <div class="card">
               <div class="card-header">
                 <div class="row">
-                    <div class="col-md-9 text-start"><h3><i class="fas fa-desktop"></i> Bureau </h3></div>
+                    <div class="col-md-9 text-start"><h3><i class="fas fa-bed"></i> Chambre Hugo </h3></div>
                     <div class="col-md-3 text-end"><p class="text-muted"> <i class="fas fa-battery-full"></i> '.$return['bureau']['battery_percent'].'%</p></div>
                   </div>
                 </div>
@@ -304,7 +306,7 @@ class Netatmo
              <div class="card">
               <div class="card-header">
                 <div class="row">
-                    <div class="col-md-9 text-start"><h3><i class="fas fa-book"></i> Degagement </h3></div>
+                    <div class="col-md-9 text-start"><h3><i class="fas fa-bed"></i> Chambre Emilie </h3></div>
                     <div class="col-md-3 text-end"><p class="text-muted"> <i class="fas fa-battery-full"></i> '.$return['degagement']['battery_percent'].'%</p></div>
                   </div>
                 </div>
