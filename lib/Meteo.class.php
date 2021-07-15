@@ -179,29 +179,29 @@ class Meteo
 		$vigilance = array();
 
 
-		if($this->DATA['vigilance']['dep_77']) {
-			if($this->DATA['vigilance']['dep_77']['risque'] != 'RAS') {
-				$vigilance[0]['title'] = $this->DATA['vigilance']['dep_77']['risque'];
-				$vigilance[0]['type'] = 'Vigilance '.$this->DATA['vigilance']['dep_77']['alerte'];
-				$vigilance[0]['dep'] = 'Seine et Marne (77)';
-				$vigilance[0]['color'] = $this->COLORS[$this->DATA['vigilance']['dep_77']['niveau']];
-				$vigilance[0]['pict'] = $this->PICTS[$this->DATA['vigilance']['dep_77']['risque']];
+		if($this->DATA['vigilance']['dep_01']) {
+			if($this->DATA['vigilance']['dep_01']['risque'] != 'RAS') {
+				$vigilance[0]['title'] = $this->DATA['vigilance']['dep_01']['risque'];
+				$vigilance[0]['type'] = 'Vigilance '.$this->DATA['vigilance']['dep_01']['alerte'];
+				$vigilance[0]['dep'] = 'Ain (01)';
+				$vigilance[0]['color'] = $this->COLORS[$this->DATA['vigilance']['dep_01']['niveau']];
+				$vigilance[0]['pict'] = $this->PICTS[$this->DATA['vigilance']['dep_01']['risque']];
 				$vigilance[0]['date'] = 'du '.$this->DATA['vigilance']['bulletin_metropole']['creation'].' au '.$this->DATA['vigilance']['bulletin_metropole']['validite'];
 			}
 
 		}
 
-		if($this->DATA['vigilance']['dep_91']) {
-			if($this->DATA['vigilance']['dep_91']['risque'] != 'RAS') {
-				if ($this->DATA['vigilance']['dep_77']['alerte'] == $this->DATA['vigilance']['dep_91']['alerte']) {
-					$vigilance[0]['dep'] = 'Essonnes (91), Seine et Marne (77)';
+		if($this->DATA['vigilance']['dep_74']) {
+			if($this->DATA['vigilance']['dep_74']['risque'] != 'RAS') {
+				if ($this->DATA['vigilance']['dep_01']['alerte'] == $this->DATA['vigilance']['dep_74']['alerte']) {
+					$vigilance[0]['dep'] = 'Haute Savoie (74), Ain (01)';
 				} else {
-					$vigilance[1]['title'] = $this->DATA['vigilance']['dep_91']['risque'];;
-					$vigilance[1]['type'] = 'Vigilance '.$this->DATA['vigilance']['dep_91']['alerte'];
-					$vigilance[1]['dep'] = 'Essonnes (91)';
-					$vigilance[1]['color'] = $this->COLORS[$this->DATA['vigilance']['dep_91']['niveau']];
+					$vigilance[1]['title'] = $this->DATA['vigilance']['dep_74']['risque'];;
+					$vigilance[1]['type'] = 'Vigilance '.$this->DATA['vigilance']['dep_74']['alerte'];
+					$vigilance[1]['dep'] = 'Haute Savoie (74)';
+					$vigilance[1]['color'] = $this->COLORS[$this->DATA['vigilance']['dep_74']['niveau']];
 					$vigilance[1]['date'] = 'du '.$this->DATA['vigilance']['bulletin_metropole']['creation'].' au '.$this->DATA['vigilance']['bulletin_metropole']['validite'];
-					$vigilance[1]['pict'] = $this->PICTS[$this->DATA['vigilance']['dep_91']['risque']];
+					$vigilance[1]['pict'] = $this->PICTS[$this->DATA['vigilance']['dep_74']['risque']];
 
 				}
 			}
