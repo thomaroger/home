@@ -34,10 +34,9 @@ class Gmap
             );
         }
 
-
         $traffics[] = array(
-            "name" => 'IAD',
-            "adress" => "Carré Haussmann III, Allée de la Ferme de Varatre, 77127 Lieusaint",
+            "name" => 'KTB',
+            "adress" => "Kiss The Bride, Allée des Frènes, Limonest",
             "distance" => 0,
             "duration" => 0,
             "extra_duration" => "+ 0 min",
@@ -45,7 +44,7 @@ class Gmap
         );
         $traffics[] = array(
             "name" => 'Ecole',
-            "adress" => "Ecole Anne Frank, Avenue Colette, Saint-Pierre-du-Perray",
+            "adress" => "Ecole Primaire, 88 chemin des écoliers, 74250 Bogève",
             "distance" => 0,
             "duration" => 0,
             "extra_duration" => "+ 0 min",
