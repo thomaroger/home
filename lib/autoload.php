@@ -14,7 +14,7 @@ if(getenv('ENV') != "dev") {
         $ip = $_SERVER['REMOTE_ADDR'];
     }
 
-    if (!in_array($ip, array("176.135.36.146","91.166.187.35", "176.153.4.179"))) {
+    if (!in_array($ip, array("176.135.36.146","91.166.187.35", "176.153.4.179", '81.18.187.162'))) {
         header('HTTP/1.0 403 Forbidden');
         exit;
     }
