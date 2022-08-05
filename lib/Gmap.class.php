@@ -44,7 +44,7 @@ class Gmap
         );
         $traffics[] = array(
             "name" => 'Ecole',
-            "adress" => "Ecole Primaire, 88 chemin des écoliers, 74250 Bogève",
+            "adress" => "1020 Route du Chef Lieu, 74250 Fillinges",
             "distance" => 0,
             "duration" => 0,
             "extra_duration" => "+ 0 min",
