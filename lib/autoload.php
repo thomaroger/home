@@ -49,13 +49,13 @@ if ($requestUri == "/netatmo") {
     exit;
 }
 
-if ($requestUri == "/flipr") {    
+/*if ($requestUri == "/flipr") {    
     require_once('Flipr.class.php');
     $flipr = new Flipr(getenv('FLIPR_USER'), getenv('FLIPR_PWD'));
     header('Content-Type: text/html; charset=utf-8');
     echo $flipr->render();
     exit;
-}
+}*/
 
 if ($requestUri == "/volet") {    
     require_once('Volet.class.php');
